@@ -1,0 +1,22 @@
+footer {
+  background-color: #111;
+  .container {
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      align-items: center;
+      height: 50px;
+      p {
+        font-size: 13px;
+        color: rgba(204, 233, 231, 1);
+        a {
+          color: rgba(204, 233, 231, 1);
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}

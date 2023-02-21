@@ -1,0 +1,67 @@
+export const data = [
+  {
+    tab: 1,
+    type: "Incoming Layer 2",
+    date: "17/01/2023",
+    status: "success",
+    from: "0x123...0a4c",
+    to: "0xabc...ca04",
+    amount: "+ 10000000 BIT",
+    txHash: {
+      hash: "0x2340...0a4d",
+      url: "",
+    },
+  },
+  {
+    tab: 1,
+    type: "Outgoing Layer 2",
+    date: "17/01/2023",
+    status: "pending",
+    from: "0x123...0a4c",
+    to: "0xabc...ca04",
+    amount: "- 10000000 BIT",
+    txHash: {
+      hash: "0x2340...0a4d",
+      url: "",
+    },
+  },
+  {
+    tab: 2,
+    type: "Deposit From Layer 1",
+    date: "17/01/2023",
+    status: "failed",
+    from: "0x123...0a4c",
+    to: "0xabc...ca04",
+    amount: "+ 1000 BIT",
+    txHash: {
+      hash: "0x2340...0a4d",
+      url: "",
+    },
+  },
+  {
+    tab: 3,
+    type: "Witdrawal To Layer 1",
+    date: "17/01/2023",
+    status: "success",
+    from: "0x123...0a4c",
+    to: "0xabc...ca04",
+    amount: "+ 1000 BIT",
+    txHash: {
+      hash: "0x2340...0a4d",
+      url: "",
+    },
+  },
+  {
+    tab: 3,
+    type: "Witdrawal To Layer 1",
+    date: "17/01/2023",
+    status: "pending",
+    from: "0x123...0a4c",
+    to: "0xabc...ca04",
+    amount: "+ 1000 BIT",
+    txHash: {
+      hash: "0x2340...0a4d",
+      url: "",
+    },
+  },
+];
