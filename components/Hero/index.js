@@ -22,7 +22,8 @@ const style = {
   justifyContent: "center",
 };
 
-const Hero = () => {
+const Hero = ({ props }) => {
+  const { balance, account } = props;
   const [open, setOpen] = useState(false);
   const [copyClipboard, setCopyClipboard] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -55,9 +56,12 @@ const Hero = () => {
                 </div>
                 <div className="address">
                   <p className="title">Address</p>
-                  <p className="address-hash">
-                    0xd49f54632670171d5944024b1a3780e762c9fab5
-                  </p>
+                  {account ? (
+                    <p className="address-hash">{account}</p>
+                  ) : (
+                    <p className="address-hash">Please Connect Your Wallet</p>
+                  )}
+
                   <div className="button-wrapper">
                     <button
                       className="btn-copy"

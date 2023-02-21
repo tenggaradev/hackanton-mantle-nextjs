@@ -1,17 +1,97 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import mantleLogo from "../../assets/img/mantle-white-logo.svg";
 import searchLogo from "../../assets/img/search.svg";
 import searchLogo2 from "../../assets/img/search2.svg";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import { ethers } from "ethers";
+import { CHAIN_ID } from "@/constant";
+import { sliceAddr } from "@/helper/slicer";
 
-const Header = () => {
+const Header = ({ props }) => {
+  const { chainId, provider, account, setAccount, balance, setBalance } = props;
   const [open, setOpen] = useState(false);
+  const [network, setIsNetwork] = useState(false);
 
   const handleOpen = () => {
     setOpen(!open);
   };
+
+  const handleSwitchNetwork = async () => {
+    try {
+      await window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: "0x1389" }], // chainId must be in hexadecimal numbers
+      });
+    } catch (switchError) {
+      if (switchError.code === 4902) {
+        try {
+          await ethereum.request({
+            method: "wallet_addEthereumChain",
+            params: [
+              {
+                chainId: "0x1389",
+                chainName: "Mantle Testnet",
+                rpcUrls: ["https://rpc.testnet.mantle.xyz/"],
+                nativeCurrency: {
+                  name: "BitDAO",
+                  symbol: "BIT",
+                  decimals: 18,
+                },
+                blockExplorerUrls: ["https://explorer.testnet.mantle.xyz/"],
+              },
+            ],
+          });
+          setIsNetwork(true);
+        } catch (error) {
+          console.log(error);
+          setIsNetwork(false);
+        }
+      }
+    }
+  };
+
+  const handleConnect = async () => {
+    console.log("Clicked");
+
+    const connect = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
+
+    console.log("Connect", connect);
+
+    const accountAddress = ethers.utils.getAddress(connect[0]);
+    setAccount(accountAddress);
+
+    let balanceAmount = await provider.getBalance(accountAddress);
+    balanceAmount = ethers.utils.formatEther(balanceAmount);
+    setBalance(balanceAmount);
+  };
+
+  useEffect(() => {
+    if (window.ethereum) {
+      window.ethereum.on("chainChanged", () => {
+        window.location.reload();
+      });
+      window.ethereum.on("accountsChanged", () => {
+        handleConnect();
+      });
+    }
+    // if (account !== "") {
+    //   const checkAccount = async () => {
+    //     await getTx(account.address);
+    //   };
+    //   checkAccount();
+    // }
+    const checkNetwork = async () => {
+      (await chainId) !== CHAIN_ID.mantleTestnet
+        ? setIsNetwork(false)
+        : setIsNetwork(true);
+    };
+    checkNetwork();
+  }, [account, chainId]);
+
   return (
     <>
       <header>
@@ -35,7 +115,21 @@ const Header = () => {
             >
               <Image src={searchLogo2} alt="search" />
             </IconButton>
-            <Button className="button-connect">Connect Wallet</Button>
+            {network ? (
+              account ? (
+                <Button className="button-connect" onClick={handleConnect}>
+                  {sliceAddr(account)}
+                </Button>
+              ) : (
+                <Button className="button-connect" onClick={handleConnect}>
+                  Connect Wallet
+                </Button>
+              )
+            ) : (
+              <Button className="button-connect" onClick={handleSwitchNetwork}>
+                Switch Network
+              </Button>
+            )}
           </div>
         </div>
       </header>
