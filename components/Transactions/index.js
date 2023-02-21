@@ -10,41 +10,60 @@ import TabTransfer from "./TabTransfer";
 import TabDeposit from "./TabDeposit";
 import TabWithdrawal from "./TabWithdrawal";
 
-import sample from "@/constant/SampleTxs.json";
+import AllTxSample from "@/constant/SampleAllTransactions.json";
+import InternalSample from "@/constant/SampleInternal.json";
 import { getAllTransaction } from "@/lib/MantleServices";
 
 const Transactions = ({ props }) => {
   const { account } = props;
   const [value, setValue] = useState("1");
   const [transactions, setTransactions] = useState([]);
-  const [tx, setTx] = useState([]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  const formatData = async (data) => {
+    console.log("start formatting data tx");
+
+    // Concat the new data with the selected sample data
+    const internalTransfer = InternalSample.data;
+    const allTransactions = internalTransfer.concat(data);
+    setTransactions(allTransactions);
+    console.log(
+      "Finish checking your deposit and withdrawal transactions, we add some sample data as well"
+    );
+
+    return allTransactions;
+  };
+
   useEffect(() => {
+    // Test Function To Call Sample Txs
+    // const loadSampleTx = async () => {
+    //   console.log("Calling sample data");
+    //   if (account) {
+    //     const data = AllTxSample.data;
+    //     const formattedData = await formatData(data);
+    //     setTransactions(formattedData);
+    //   }
+    // };
+    // loadSampleTx();
+
     const loadAllTx = async () => {
       if (account) {
         await getAllTransaction(account)
-          .then((res) => setTransactions(res))
+          .then((res) => formatData(res))
           .catch((error) => {
             console.error(error);
+            console.log(
+              "Need to consider run out of API Call, so we provide sample data in case of errors"
+            );
+            setTransactions(AllTxSample.data);
           });
       }
     };
 
     loadAllTx();
-
-    // Test Function To Call Sample Txs
-    // const loadSampleTx = async () => {
-    //   console.log("Calling sample data");
-    //   if (account) {
-    //     const data = sample.data;
-    //     setTx(data);
-    //   }
-    // };
-    // loadSampleTx();
   }, [account]);
 
   return (

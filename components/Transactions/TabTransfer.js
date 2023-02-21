@@ -9,16 +9,19 @@ import {
   sliceHash,
   getUrlHash,
   getUrlAddr,
+  textBlock,
+  convertDate,
 } from "@/helper/formatter.js";
-import sampleTxs from "../../constant/SampleTxs.json";
 
-const TabTransfer = ({transactions}) => {
+const TabTransfer = ({ transactions }) => {
   const allTransactionsData = transactions;
   const [dataTab, setDataTab] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const filteredTab = useMemo(() => {
-    return dataTab.filter((item) => item.tab === 1);
+    return dataTab.filter(
+      (item) => item.type === "incoming" || item.type === "outgoing"
+    );
   }, [dataTab]);
 
   useEffect(() => {
@@ -45,10 +48,10 @@ const TabTransfer = ({transactions}) => {
             ) : (
               <>
                 <div className="col type">
-                  <p>{item.type}</p>
+                  <p>{textBlock(item.type)}</p>
                 </div>
                 <div className="col">
-                  <p>{item.date}</p>
+                  <p>{convertDate(item.timestamp)}</p>
                   <p className={"status-" + item.status}>{item.status}</p>
                 </div>
                 <div className="col">
@@ -58,7 +61,7 @@ const TabTransfer = ({transactions}) => {
                     className="tooltip"
                     title={item.from}
                   >
-                    <p>{item.from}</p>
+                    <p>{sliceAddr(item.from)}</p>
                   </Tooltip>
                 </div>
                 <div className="col">
@@ -68,29 +71,26 @@ const TabTransfer = ({transactions}) => {
                     className="tooltip"
                     title={item.to}
                   >
-                    <p>{item.to}</p>
+                    <p>{sliceAddr(item.to)}</p>
                   </Tooltip>
                 </div>
                 <div className="col">
                   <p className="title">Amount</p>
-                  <p>{item.amount}</p>
+                  <p>
+                    {`${item.value} `}
+                    <span>{item.symbol}</span>
+                  </p>
                 </div>
                 <div className="col col-withdrawal">
                   <p className="title">Tx Hash</p>
 
-                  {item.tab === 3 && item.status === "pending" ? (
-                    <Button className="button-withdrawal">
-                      Claim withdrawal
-                    </Button>
-                  ) : (
-                    <a
-                      target="_blank"
-                      rel="noreferrer"
-                      href={item.txHash.url ? item.txHash.url : ""}
-                    >
-                      {item.txHash.hash}
-                    </a>
-                  )}
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={getUrlHash(item.hash)}
+                  >
+                    {sliceHash(item.hash)}
+                  </a>
                 </div>
               </>
             )}

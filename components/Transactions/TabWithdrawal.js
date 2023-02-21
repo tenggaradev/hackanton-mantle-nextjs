@@ -9,8 +9,9 @@ import {
   sliceHash,
   getUrlHash,
   getUrlAddr,
+  textBlock,
+  convertDate,
 } from "@/helper/formatter.js";
-import sampleTxs from "../../constant/SampleTxs.json";
 
 const TabWithdrawal = ({ transactions }) => {
   const allTransactionsData = transactions;
@@ -45,10 +46,10 @@ const TabWithdrawal = ({ transactions }) => {
             ) : (
               <>
                 <div className="col type">
-                  <p>{item.type}</p>
+                  <p>{textBlock(item.type)}</p>
                 </div>
                 <div className="col">
-                  <p>{item.timestamp}</p>
+                  <p>{convertDate(item.timestamp)}</p>
                   <p className={"status-" + item.status}>{item.status}</p>
                 </div>
                 <div className="col">
@@ -73,7 +74,10 @@ const TabWithdrawal = ({ transactions }) => {
                 </div>
                 <div className="col">
                   <p className="title">Amount</p>
-                  <p>{item.value}</p>
+                  <p>
+                    {`${item.value} `}
+                    <span>{item.symbol}</span>
+                  </p>
                 </div>
                 <div className="col col-withdrawal">
                   <p className="title">Tx Hash</p>
