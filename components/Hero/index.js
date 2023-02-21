@@ -61,7 +61,7 @@ const Hero = ({ props }) => {
                       scale={10}
                     />
                   ) : (
-                    <img src={avatar} alt="avatar" />
+                    <Image src={avatar} alt="avatar" />
                   )}
                 </div>
                 <div className="address">
@@ -108,14 +108,7 @@ const Hero = ({ props }) => {
                     <p>Balance</p>
                   </div>
                   <div className="value">
-                    {
-                      balance ? (
-                        <p>{balance} BIT</p>
-                      ) : (
-                        <p>{`-`}</p>
-                      )
-                    }
-                    
+                    {balance ? <p>{balance} BIT</p> : <p>{`-`}</p>}
                   </div>
                 </div>
                 <div className="item">
@@ -150,9 +143,19 @@ const Hero = ({ props }) => {
                         className="select-autocomplete"
                         options={options}
                       />
-                      <a href="/" target="_blank" rel="noreferrer">
-                        <Image src={wallet} alt="wallet" />
-                      </a>
+                      {account ? (
+                        <a
+                          href={`https://explorer.testnet.mantle.xyz/address/${account}/tokens#address-tabs`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <Image src={wallet} alt="wallet" />
+                        </a>
+                      ) : (
+                        <a href="/" target="_blank" rel="noreferrer">
+                          <Image src={wallet} alt="wallet" />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>

@@ -4,7 +4,16 @@ import Skeleton from "@mui/material/Skeleton";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 
-const TabTransfer = () => {
+import {
+  sliceAddr,
+  sliceHash,
+  getUrlHash,
+  getUrlAddr,
+} from "@/helper/formatter.js";
+import sampleTxs from "../../constant/SampleTxs.json";
+
+const TabTransfer = ({transactions}) => {
+  const allTransactionsData = transactions;
   const [dataTab, setDataTab] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -14,7 +23,7 @@ const TabTransfer = () => {
 
   useEffect(() => {
     setLoading(true);
-    setDataTab(data);
+    setDataTab(allTransactionsData);
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1000);

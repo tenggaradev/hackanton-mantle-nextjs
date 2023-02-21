@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
@@ -10,12 +10,42 @@ import TabTransfer from "./TabTransfer";
 import TabDeposit from "./TabDeposit";
 import TabWithdrawal from "./TabWithdrawal";
 
-const Transactions = () => {
+import sample from "@/constant/SampleTxs.json";
+import { getAllTransaction } from "@/lib/MantleServices";
+
+const Transactions = ({ props }) => {
+  const { account } = props;
   const [value, setValue] = useState("1");
+  const [transactions, setTransactions] = useState([]);
+  const [tx, setTx] = useState([]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    const loadAllTx = async () => {
+      if (account) {
+        await getAllTransaction(account)
+          .then((res) => setTransactions(res))
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    };
+
+    loadAllTx();
+
+    // Test Function To Call Sample Txs
+    // const loadSampleTx = async () => {
+    //   console.log("Calling sample data");
+    //   if (account) {
+    //     const data = sample.data;
+    //     setTx(data);
+    //   }
+    // };
+    // loadSampleTx();
+  }, [account]);
 
   return (
     <>
@@ -40,16 +70,16 @@ const Transactions = () => {
                 </TabList>
               </Box>
               <TabPanel className="tab-content" value="1">
-                <TabTransactions />
+                <TabTransactions transactions={transactions} />
               </TabPanel>
               <TabPanel className="tab-content" value="2">
-                <TabTransfer />
+                <TabTransfer transactions={transactions} />
               </TabPanel>
               <TabPanel className="tab-content" value="3">
-                <TabDeposit />
+                <TabDeposit transactions={transactions} />
               </TabPanel>
               <TabPanel className="tab-content" value="4">
-                <TabWithdrawal />
+                <TabWithdrawal transactions={transactions} />
               </TabPanel>
             </TabContext>
           </Box>

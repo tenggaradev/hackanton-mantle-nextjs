@@ -4,17 +4,26 @@ import Skeleton from "@mui/material/Skeleton";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 
-const TabWithdrawal = () => {
+import {
+  sliceAddr,
+  sliceHash,
+  getUrlHash,
+  getUrlAddr,
+} from "@/helper/formatter.js";
+import sampleTxs from "../../constant/SampleTxs.json";
+
+const TabWithdrawal = ({ transactions }) => {
+  const allTransactionsData = transactions;
   const [dataTab, setDataTab] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const filteredTab = useMemo(() => {
-    return dataTab.filter((item) => item.tab === 3);
+    return dataTab.filter((item) => item.type === "withdrawal");
   }, [dataTab]);
 
   useEffect(() => {
     setLoading(true);
-    setDataTab(data);
+    setDataTab(allTransactionsData);
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1000);
@@ -39,7 +48,7 @@ const TabWithdrawal = () => {
                   <p>{item.type}</p>
                 </div>
                 <div className="col">
-                  <p>{item.date}</p>
+                  <p>{item.timestamp}</p>
                   <p className={"status-" + item.status}>{item.status}</p>
                 </div>
                 <div className="col">
@@ -49,7 +58,7 @@ const TabWithdrawal = () => {
                     className="tooltip"
                     title={item.from}
                   >
-                    <p>{item.from}</p>
+                    <p>{sliceAddr(item.from)}</p>
                   </Tooltip>
                 </div>
                 <div className="col">
@@ -59,27 +68,31 @@ const TabWithdrawal = () => {
                     className="tooltip"
                     title={item.to}
                   >
-                    <p>{item.to}</p>
+                    <p>{sliceAddr(item.to)}</p>
                   </Tooltip>
                 </div>
                 <div className="col">
                   <p className="title">Amount</p>
-                  <p>{item.amount}</p>
+                  <p>{item.value}</p>
                 </div>
                 <div className="col col-withdrawal">
                   <p className="title">Tx Hash</p>
 
-                  {item.tab === 3 && item.status === "pending" ? (
-                    <Button className="button-withdrawal">
+                  {item.type === "withdrawal" && item.status === "pending" ? (
+                    <Button
+                      className="button-withdrawal"
+                      target="_blank"
+                      href="https://bridge.testnet.mantle.xyz/account/withdraw"
+                    >
                       Claim withdrawal
                     </Button>
                   ) : (
                     <a
                       target="_blank"
                       rel="noreferrer"
-                      href={item.txHash.url ? item.txHash.url : ""}
+                      href={getUrlHash(item.hash)}
                     >
-                      {item.txHash.hash}
+                      {sliceHash(item.hash)}
                     </a>
                   )}
                 </div>

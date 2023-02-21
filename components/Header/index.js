@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import { ethers } from "ethers";
 import { CHAIN_ID } from "@/constant";
-import { sliceAddr } from "@/helper/slicer";
+import { sliceAddr } from "@/helper/formatter";
 
 const Header = ({ props }) => {
   const { chainId, provider, account, setAccount, setBalance } = props;
