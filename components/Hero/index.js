@@ -11,6 +11,7 @@ import Select from "react-select";
 import Tooltip from "@mui/material/Tooltip";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import Blockies from "react-blockies";
 
 const style = {
   position: "absolute",
@@ -52,7 +53,16 @@ const Hero = ({ props }) => {
             <div className="wrapper">
               <div className="avatar-address">
                 <div className="avatar">
-                  <Image src={avatar} alt="avatar" />
+                  {account ? (
+                    <Blockies
+                      seed={account}
+                      className="identicon"
+                      size={10}
+                      scale={10}
+                    />
+                  ) : (
+                    <img src={avatar} alt="avatar" />
+                  )}
                 </div>
                 <div className="address">
                   <p className="title">Address</p>
@@ -65,10 +75,10 @@ const Hero = ({ props }) => {
                   <div className="button-wrapper">
                     <button
                       className="btn-copy"
-                      onClick={() =>
-                        handleCopyClipboard(
-                          "0xd49f54632670171d5944024b1a3780e762c9fab5"
-                        )
+                      onClick={
+                        account
+                          ? () => handleCopyClipboard({ account })
+                          : () => handleCopyClipboard("Connect Wallet")
                       }
                     >
                       <Image src={copy} alt="copy" />
@@ -91,14 +101,21 @@ const Hero = ({ props }) => {
                     <Tooltip
                       enterTouchDelay={0}
                       className="tooltip"
-                      title="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
+                      title="Address Balance in BIT"
                     >
                       <Image src={info} alt="info" />
                     </Tooltip>
                     <p>Balance</p>
                   </div>
                   <div className="value">
-                    <p>1,999,873.239484 BIT</p>
+                    {
+                      balance ? (
+                        <p>{balance} BIT</p>
+                      ) : (
+                        <p>{`-`}</p>
+                      )
+                    }
+                    
                   </div>
                 </div>
                 <div className="item">

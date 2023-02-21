@@ -10,12 +10,30 @@ import { CHAIN_ID } from "@/constant";
 import { sliceAddr } from "@/helper/slicer";
 
 const Header = ({ props }) => {
-  const { chainId, provider, account, setAccount, balance, setBalance } = props;
+  const { chainId, provider, account, setAccount, setBalance } = props;
   const [open, setOpen] = useState(false);
   const [network, setIsNetwork] = useState(false);
 
   const handleOpen = () => {
     setOpen(!open);
+  };
+
+  const loadAccount = async (provider) => {
+    let balance;
+
+    const accounts = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
+
+    const accountAddress = ethers.utils.getAddress(accounts[0]);
+
+    if (provider) {
+      balance = await provider.getBalance(accountAddress);
+      balance = ethers.utils.formatEther(balance);
+    }
+
+    setAccount(accountAddress);
+    setBalance(balance);
   };
 
   const handleSwitchNetwork = async () => {
@@ -53,20 +71,7 @@ const Header = ({ props }) => {
   };
 
   const handleConnect = async () => {
-    console.log("Clicked");
-
-    const connect = await window.ethereum.request({
-      method: "eth_requestAccounts",
-    });
-
-    console.log("Connect", connect);
-
-    const accountAddress = ethers.utils.getAddress(connect[0]);
-    setAccount(accountAddress);
-
-    let balanceAmount = await provider.getBalance(accountAddress);
-    balanceAmount = ethers.utils.formatEther(balanceAmount);
-    setBalance(balanceAmount);
+    loadAccount(provider);
   };
 
   useEffect(() => {
@@ -75,7 +80,7 @@ const Header = ({ props }) => {
         window.location.reload();
       });
       window.ethereum.on("accountsChanged", () => {
-        handleConnect();
+        loadAccount(provider);
       });
     }
     // if (account !== "") {
