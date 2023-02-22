@@ -56,7 +56,8 @@ ChartJS.register(
   SubTitle
 );
 
-const Balance = () => {
+const Balance = ({ props }) => {
+  const { account } = props;
   const [dataLineChart, setDataLineChart] = useState({
     labels: [],
     datasets: [
@@ -84,15 +85,19 @@ const Balance = () => {
         <Container className="container">
           <div className="card">
             <p className="title">Wallet Balance</p>
-            <p className="balance-total">$ 2,000,000.00</p>
-            <p className="activity">+3% ($ 10)</p>
-            <div className="chart">
-              <Line
-                className="line-chart"
-                options={{ maintainAspectRatio: false }}
-                data={dataLineChart}
-              />
-            </div>
+            <p className="balance-total">{account ? '$ 2,000,000.00' : '-'}</p>
+            {account ? (<p className="activity">+3% ($ 10)</p>) : ''}
+            {account &&(
+              <>
+                <div className="chart">
+                  <Line
+                    className="line-chart"
+                    options={{ maintainAspectRatio: false }}
+                    data={dataLineChart}
+                  />
+                </div>
+              </>
+            )}
           </div>
         </Container>
       </div>
