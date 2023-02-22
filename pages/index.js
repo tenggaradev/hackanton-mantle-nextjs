@@ -21,9 +21,10 @@ export default function Home() {
       const { chainId } = await connection.getNetwork();
       setChainId(chainId);
 
-       if (connection.provider.selectedAddress) {
-        setAccount(connection.provider.selectedAddress)
-       };
+      const isMetaMaskConnected = await connection.listAccounts();
+      if (isMetaMaskConnected.length > 0) {
+        setAccount(isMetaMaskConnected[0]);
+      }
     }
   };
 
