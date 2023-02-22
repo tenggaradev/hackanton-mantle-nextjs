@@ -31,6 +31,6 @@ export const textBlock = (type) => {
 };
 
 export const convertDate = (unix) => {
-  const day = moment.unix(unix).format("DD/MM/YYYY")
+  const day = moment.unix(unix).format("YYYY-MM-DD")
   return day;
 }

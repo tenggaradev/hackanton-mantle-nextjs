@@ -35,7 +35,6 @@ const TabTransactions = ({ transactions, props }) => {
   return (
     <>
       <div className="tab-wrapper">
-        /*{" "}
         {filteredTab.map((item, index) => (
           <div className="tab-item" key={index}>
             {loading ? (
