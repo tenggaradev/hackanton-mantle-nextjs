@@ -7,12 +7,14 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import { ethers } from "ethers";
 import { CHAIN_ID } from "@/constant";
-import { sliceAddr } from "@/helper/formatter";
+import { getUrlAddr, getUrlHash, sliceAddr } from "@/helper/formatter";
 
 const Header = ({ props }) => {
   const { chainId, provider, account, setAccount, setBalance } = props;
   const [open, setOpen] = useState(false);
   const [network, setIsNetwork] = useState(false);
+  const [input, setInput] = useState("");
+  const [searchUrl, setSearchUrl] = useState("");
 
   const handleOpen = () => {
     setOpen(!open);
@@ -70,6 +72,20 @@ const Header = ({ props }) => {
     }
   };
 
+  const handleInput = (e) => {
+    e.preventDefault();
+    const searchInput = e.target.value;
+    if (searchInput.length === 42) {
+      const url = getUrlAddr(searchInput);
+      setSearchUrl(url);
+    } else if (searchInput.length === 66) {
+      const url = getUrlHash(searchInput);
+      setSearchUrl(url);
+    } else {
+      setInput(`https://explorer.testnet.mantle.xyz/token/${searchInput}`);
+    }
+  };
+
   const handleConnect = async () => {
     loadAccount(provider);
   };
@@ -83,12 +99,7 @@ const Header = ({ props }) => {
         loadAccount(provider);
       });
     }
-    // if (account !== "") {
-    //   const checkAccount = async () => {
-    //     await getTx(account.address);
-    //   };
-    //   checkAccount();
-    // }
+
     const checkNetwork = async () => {
       (await chainId) !== CHAIN_ID.mantleTestnet
         ? setIsNetwork(false)
@@ -108,9 +119,16 @@ const Header = ({ props }) => {
             <Image src={searchLogo} alt="search" />
             <input
               type="search"
-              placeholder="Address / Txn hash / Block / Token"
+              placeholder="Address / Txn hash / Block"
+              onChange={(e) => handleInput(e)}
             />
-            <Button className="button-search">Search</Button>
+            <Button
+              className="button-search"
+              target={"_blank"}
+              href={searchUrl}
+            >
+              Search
+            </Button>
           </div>
           <div className="connect">
             <IconButton
