@@ -14,18 +14,12 @@ import {
 } from "@/helper/formatter.js";
 
 const TabTransactions = ({ transactions, props }) => {
+  const allTx = transactions;
   const { account } = props;
-  const allTransactionsData = transactions;
-  const [dataTab, setDataTab] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const filteredTab = useMemo(() => {
-    return dataTab.filter((item) => item);
-  }, [dataTab]);
 
   useEffect(() => {
     setLoading(true);
-    setDataTab(allTransactionsData);
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1000);
@@ -35,7 +29,7 @@ const TabTransactions = ({ transactions, props }) => {
   return (
     <>
       <div className="tab-wrapper">
-        {filteredTab.map((item, index) => (
+        {allTx.map((item, index) => (
           <div className="tab-item" key={index}>
             {loading ? (
               <Skeleton

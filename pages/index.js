@@ -17,8 +17,13 @@ export default function Home() {
     if (window.ethereum) {
       const connection = new ethers.providers.Web3Provider(window.ethereum);
       setProvider(connection);
+
       const { chainId } = await connection.getNetwork();
       setChainId(chainId);
+
+       if (connection.provider.selectedAddress) {
+        setAccount(connection.provider.selectedAddress)
+       };
     }
   };
 
