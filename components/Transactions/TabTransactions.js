@@ -53,26 +53,65 @@ const TabTransactions = ({ transactions, props }) => {
                   <p>{convertDate(item.timestamp)}</p>
                   <p className={"status-" + item.status}>{item.status}</p>
                 </div>
-                <div className="col">
-                  <p className="title">From</p>
-                  <Tooltip
-                    enterTouchDelay={0}
-                    className="tooltip"
-                    title={item.from}
-                  >
-                    <p>{sliceAddr(item.from)}</p>
-                  </Tooltip>
-                </div>
-                <div className="col">
-                  <p className="title">To</p>
-                  <Tooltip
-                    enterTouchDelay={0}
-                    className="tooltip"
-                    title={item.to}
-                  >
-                    <p>{sliceAddr(item.to)}</p>
-                  </Tooltip>
-                </div>
+                {item.type === "incoming" ? (
+                  <div className="col">
+                    <p className="title">From</p>
+                    <Tooltip
+                      enterTouchDelay={0}
+                      className="tooltip"
+                      title={item.from}
+                    >
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={getUrlAddr(item.from)}
+                      >
+                        {sliceAddr(item.from)}
+                      </a>
+                    </Tooltip>
+                  </div>
+                ) : (
+                  <div className="col">
+                    <p className="title">From</p>
+                    <Tooltip
+                      enterTouchDelay={0}
+                      className="tooltip"
+                      title={item.from}
+                    >
+                      <p>{sliceAddr(item.from)}</p>
+                    </Tooltip>
+                  </div>
+                )}
+
+                {item.type === "incoming" ? (
+                  <div className="col">
+                    <p className="title">To</p>
+                    <Tooltip
+                      enterTouchDelay={0}
+                      className="tooltip"
+                      title={item.to}
+                    >
+                      <p>{sliceAddr(item.to)}</p>
+                    </Tooltip>
+                  </div>
+                ) : (
+                  <div className="col">
+                    <p className="title">To</p>
+                    <Tooltip
+                      enterTouchDelay={0}
+                      className="tooltip"
+                      title={item.to}
+                    >
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={getUrlAddr(item.to)}
+                      >
+                        {sliceAddr(item.to)}
+                      </a>
+                    </Tooltip>
+                  </div>
+                )}
                 <div className="col">
                   <p className="title">Amount</p>
                   <p>
