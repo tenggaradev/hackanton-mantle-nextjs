@@ -10,8 +10,8 @@ import TabTransfer from "./TabTransfer";
 import TabDeposit from "./TabDeposit";
 import TabWithdrawal from "./TabWithdrawal";
 
-import AllTxSample from "@/constant/SampleAllTransactions.json";
-import InternalSample from "@/constant/SampleInternal.json";
+import AllTxSample from "@/constant/AllTransactionsSample.json";
+import InternalSample from "@/constant/InternalSample.json";
 import { getAllTransaction } from "@/lib/MantleServices";
 
 const Transactions = ({ props }) => {
@@ -39,31 +39,31 @@ const Transactions = ({ props }) => {
 
   useEffect(() => {
     // Test Function To Call Sample Txs
-    // const loadSampleTx = async () => {
-    //   console.log("Calling sample data");
-    //   if (account) {
-    //     const data = AllTxSample.data;
-    //     const formattedData = await formatData(data);
-    //     setTransactions(formattedData);
-    //   }
-    // };
-    // loadSampleTx();
-
-    const loadAllTx = async () => {
+    const loadSampleTx = async () => {
       if (account) {
-        await getAllTransaction(account)
-          .then((res) => formatData(res))
-          .catch((error) => {
-            console.error(error);
-            console.log(
-              "Need to consider run out of API Call, so we provide sample data in case of errors"
-            );
-            setTransactions(AllTxSample.data);
-          });
+        console.log("Calling sample data");
+        const data = AllTxSample.data;
+        const formattedData = await formatData(data);
+        setTransactions(formattedData);
       }
     };
+    loadSampleTx();
 
-    loadAllTx();
+    // const loadAllTx = async () => {
+    //   if (account) {
+    //     await getAllTransaction(account)
+    //       .then((res) => formatData(res))
+    //       .catch((error) => {
+    //         console.error(error);
+    //         console.log(
+    //           "Need to consider run out of API Call, so we provide sample data in case of errors"
+    //         );
+    //         setTransactions(AllTxSample.data);
+    //       });
+    //   }
+    // };
+
+    // loadAllTx();
   }, [account]);
 
   return (
@@ -89,7 +89,7 @@ const Transactions = ({ props }) => {
                 </TabList>
               </Box>
               <TabPanel className="tab-content" value="1">
-                <TabTransactions transactions={transactions} />
+                <TabTransactions transactions={transactions} props={props}/>
               </TabPanel>
               <TabPanel className="tab-content" value="2">
                 <TabTransfer transactions={transactions} />

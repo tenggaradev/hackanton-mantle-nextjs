@@ -16,10 +16,8 @@ export default function Home() {
   const loadBlockchainData = async () => {
     if (window.ethereum) {
       const connection = new ethers.providers.Web3Provider(window.ethereum);
-      console.log("connection in provider", connection);
       setProvider(connection);
       const { chainId } = await connection.getNetwork();
-      console.log("Chain ID", chainId);
       setChainId(chainId);
     }
   };

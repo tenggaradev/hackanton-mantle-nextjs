@@ -13,7 +13,8 @@ import {
   convertDate,
 } from "@/helper/formatter.js";
 
-const TabTransactions = ({ transactions }) => {
+const TabTransactions = ({ transactions, props }) => {
+  const { account } = props;
   const allTransactionsData = transactions;
   const [dataTab, setDataTab] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -29,11 +30,12 @@ const TabTransactions = ({ transactions }) => {
       setLoading(false);
     }, 1000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [account]);
 
   return (
     <>
       <div className="tab-wrapper">
+        /*{" "}
         {filteredTab.map((item, index) => (
           <div className="tab-item" key={index}>
             {loading ? (
