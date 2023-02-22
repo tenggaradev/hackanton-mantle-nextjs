@@ -44,6 +44,12 @@
         .qr-code {
           width: 200px;
         }
+        .qr-placeholder{
+          width: 150px;
+          height: 150px;
+          border-radius: 5px;
+          background-color: rgba(0, 0, 0, 0.2);
+        }
       }
       .wrapper {
         @media (max-width: 991.98px) {
@@ -140,6 +146,17 @@
                 width: 300px;
               }
             }
+          }
+        }
+        .no-address{
+          background-color: rgba(0, 0, 0, 0.2);
+          backdrop-filter: blur(20px);
+          padding: 20px;
+          display: inline-flex;
+          margin-bottom: 20px;
+          border-radius: 10px;
+          p{
+            color: #ccc;
           }
         }
         .overview {

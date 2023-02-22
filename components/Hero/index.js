@@ -51,6 +51,8 @@ const Hero = ({ props }) => {
         <Container className="container">
           <div className="column">
             <div className="wrapper">
+            {account ? (
+              <>
               <div className="avatar-address">
                 <div className="avatar">
                   {account ? (
@@ -95,6 +97,12 @@ const Hero = ({ props }) => {
                   </div>
                 </div>
               </div>
+              </>
+            ) : (
+              <div className="no-address">
+                <p className="address-hash">Please Connect Your Wallet</p>
+              </div>
+            )}
               <div className="overview">
                 <div className="item">
                   <div className="label">
@@ -123,7 +131,7 @@ const Hero = ({ props }) => {
                     <p>BIT Value</p>
                   </div>
                   <div className="value">
-                    <p>$20.87 (@ $1.23 BIT)</p>
+                    {account ? <p>$20.87 (@ $1.23 BIT)</p> : <p>{`-`}</p>}
                   </div>
                 </div>
                 <div className="item">
@@ -138,32 +146,39 @@ const Hero = ({ props }) => {
                     <p>Tokens</p>
                   </div>
                   <div className="value">
-                    <div className="token-wallet">
-                      <Select
-                        className="select-autocomplete"
-                        options={options}
-                      />
-                      {account ? (
-                        <a
-                          href={`https://explorer.testnet.mantle.xyz/address/${account}/tokens#address-tabs`}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <Image src={wallet} alt="wallet" />
-                        </a>
-                      ) : (
-                        <a href="/" target="_blank" rel="noreferrer">
-                          <Image src={wallet} alt="wallet" />
-                        </a>
-                      )}
-                    </div>
+                    {account ? (
+                      <>
+                        <div className="token-wallet">
+                          <Select
+                            className="select-autocomplete"
+                            options={options}
+                          />
+                          {account ? (
+                            <a
+                              href={`https://explorer.testnet.mantle.xyz/address/${account}/tokens#address-tabs`}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <Image src={wallet} alt="wallet" />
+                            </a>
+                          ) : (
+                            <a href="/" target="_blank" rel="noreferrer">
+                              <Image src={wallet} alt="wallet" />
+                            </a>
+                          )}
+                        </div>
+                      </>
+                    ) : (
+                      <p>{`-`}</p>
+                    )}
+                    
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div className="column">
-            <Image src={qrcode} alt="qr code" className="qr-code" />
+            {account ? (<Image src={qrcode} alt="qr code" className="qr-code" />) : (<div className="qr-placeholder"></div>)}
           </div>
         </Container>
       </div>
