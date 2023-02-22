@@ -5,10 +5,8 @@ import avatar from "../../assets/img/avatar.svg";
 import copy from "../../assets/img/copy2.svg";
 import qrcode from "../../assets/img/qrcode.svg";
 import wallet from "../../assets/img/wallet.svg";
-import info from "../../assets/img/info.svg";
 import qrcodeIcon from "../../assets/img/qrcode2.svg";
 import Select from "react-select";
-import Tooltip from "@mui/material/Tooltip";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Blockies from "react-blockies";
@@ -105,13 +103,6 @@ const Hero = ({ props }) => {
               <div className="overview">
                 <div className="item">
                   <div className="label">
-                    <Tooltip
-                      enterTouchDelay={0}
-                      className="tooltip"
-                      title="Address Balance in BIT"
-                    >
-                      <Image src={info} alt="info" />
-                    </Tooltip>
                     <p>Balance</p>
                   </div>
                   <div className="value">
@@ -120,13 +111,6 @@ const Hero = ({ props }) => {
                 </div>
                 <div className="item">
                   <div className="label">
-                    <Tooltip
-                      enterTouchDelay={0}
-                      className="tooltip"
-                      title="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
-                    >
-                      <Image src={info} alt="info" />
-                    </Tooltip>
                     <p>BIT Value</p>
                   </div>
                   <div className="value">
@@ -135,13 +119,6 @@ const Hero = ({ props }) => {
                 </div>
                 <div className="item">
                   <div className="label">
-                    <Tooltip
-                      enterTouchDelay={0}
-                      className="tooltip"
-                      title="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
-                    >
-                      <Image src={info} alt="info" />
-                    </Tooltip>
                     <p>Tokens</p>
                   </div>
                   <div className="value">
