@@ -37,6 +37,7 @@
     <li>
       <a href="#about">About The Project</a>
       <ul>
+        <li><a href="#demo">Demo Video</a></li>
         <li><a href="#background">Background</a></li>
         <li><a href="#problem">Problem</a></li>
         <li><a href="#solution">Solution</a></li>
@@ -61,8 +62,13 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+### Demo 
+Checkout The Demo Video Here: [DEMO VIDEO](https://www.youtube.com/watch?v=uSY-ThuvBjw)
+
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 ![Product_Hero](https://user-images.githubusercontent.com/36572181/220634240-09d19d8d-fc24-47ac-892d-6b646b7de531.jpg)
+
+> Data is just a sample for demo purposes
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -181,13 +187,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Add State Management like Redux to implement more sophisticated logic
-- [ ] More Responsive Web Page
-- [ ] Minors Implementation
-    - [ ] Local Currency Exchange
-    - [ ] Let us know more features needed
-- [ ] Major Upgrade
-    - [ ] We will keep adding more features
+- [ ] Address Labelling - We know that many fall for victims because of the address labelling issue, where users miss transfer, or even some scammers mimic an address that related to the users. With labelling address, this could enhance user security and easy to transfer.
+
+- [ ] Filter Transactions - Where users can filter their transactions based on the property they chose.
+
+- [ ] Let us know more features needed
 
 
 See the [open issues](https://github.com/tenggaradev/hackanton-mantle-nextjs/issues) for a full list of proposed features (and known issues).
