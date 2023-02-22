@@ -7,6 +7,7 @@
       top: 80px;
       background-color: rgba(0, 0, 0, 0.4);
       backdrop-filter: blur(20px);
+      z-index: 2;
       @media (max-width: 991.98px) {
       }
       @media (max-width: 767.98px) {
