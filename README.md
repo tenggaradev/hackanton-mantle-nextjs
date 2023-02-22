@@ -14,7 +14,7 @@
     <!-- <img src="./assets/img/mantle-logo.jpg" alt="Logo" width="80" height="80"> -->
   </a>
 
-<h3 align="center">Mantle Personalized Block Explorer</h3>
+<h3 align="center"><a href="https://tenggara-hackanton-mantle.vercel.app/">Mantle Personalized Block Explorer</a></h3>
 
   <p align="center">
     Mantle Personalized Block Explorer is a simplified block explorer for non native crypto users.
@@ -51,6 +51,7 @@
         <li><a href="#learn-more">Learn More</a></li>
       </ul>
     </li>
+    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -63,7 +64,10 @@
 ## About The Project
 
 ### Demo 
-Checkout The Demo Video Here: [DEMO VIDEO](https://www.youtube.com/watch?v=uSY-ThuvBjw)
+
+Check out the demo vide here: [DEMO VIDEO](https://www.youtube.com/watch?v=uSY-ThuvBjw)
+
+The web application here: [WEB APP](https://tenggara-hackanton-mantle.vercel.app/)
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 ![Product_Hero](https://user-images.githubusercontent.com/36572181/220634240-09d19d8d-fc24-47ac-892d-6b646b7de531.jpg)
@@ -183,6 +187,33 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Usage
+
+First, users just need to connect their wallets. 
+
+![Product_Hero](https://user-images.githubusercontent.com/36572181/220713479-868244e4-1ad6-497c-895e-b4b143d88d4d.jpg)
+
+User can also see their assets price movement.
+
+![Screenshot_511](https://user-images.githubusercontent.com/36572181/220713676-4c9da4f4-8efe-4e2e-89e8-884712835d97.jpg)
+
+And, one of our focus, the UI/UX in the transactions data. The picture belows shows  **Transfer Tab**. In this tab, users can see all their transactions in layer 2 and *deposit from* and *withdrawal to* layer 1.
+
+![Screenshot_512](https://user-images.githubusercontent.com/36572181/220714050-0b5ab687-8aff-4174-8c8a-7bd6f7a16469.jpg)
+
+There is also a tab for Deposit from layer 1. This tab will filter deposit only transactions.
+
+![Screenshot_514](https://user-images.githubusercontent.com/36572181/220718105-0d52708c-f8bf-4541-b340-4226b0125a7e.jpg)
+
+Lastly, there is a Withdrawal to layer 1 tab. This tab filters all withdrawal. If the users haven't claimed their withdrawls, the button will take them to the Claim web page.
+
+![Screenshot_515](https://user-images.githubusercontent.com/36572181/220718539-57b1f727-a97e-47ff-9050-a387b7b13312.jpg)
+
+## Challenges
+
+We understand that we can pull real data from Mantle Layer 2. As you can see, we create MantleServices.js inside lib folder. This service helps us to interact with with Mantle Layer 2. With this service, we query real data for Deposit and Withdrawal. But to make sure, our web app showcase demonstrate all the data needed, we use the sample data in our demo app.
+
 
 <!-- ROADMAP -->
 ## Roadmap
