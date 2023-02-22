@@ -1,22 +1,22 @@
 export const dataChart = [
   {
-    day: "Jan 13",
-    profit: 200,
+    day: "Feb 3",
+    amount: 200,
   },
   {
-    day: "Jan 27",
-    profit: 300,
+    day: "Feb 4",
+    amount: 300,
   },
   {
-    day: "Feb 2",
-    profit: 340,
+    day: "Feb 5",
+    amount: 340,
+  },
+  {
+    day: "Feb 6",
+    amount: 450,
   },
   {
     day: "Feb 7",
-    profit: 450,
-  },
-  {
-    day: "Feb 7",
-    profit: 430,
+    amount: 430,
   },
 ];

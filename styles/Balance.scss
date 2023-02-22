@@ -19,6 +19,9 @@
       .activity {
         color: #9aebba;
         font-weight: 500;
+        &.down{
+          color: #dc3545;
+        }
       }
       .chart {
         margin-top: 60px;

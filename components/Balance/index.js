@@ -72,7 +72,7 @@ const Balance = ({ props }) => {
       labels: dataChart.map((item) => item.day),
       datasets: [
         {
-          data: dataChart.map((item) => item.profit),
+          data: dataChart.map((item) => item.amount),
           borderColor: "#9aebba",
         },
       ],
@@ -85,8 +85,8 @@ const Balance = ({ props }) => {
         <Container className="container">
           <div className="card">
             <p className="title">Wallet Balance</p>
-            <p className="balance-total">{account ? '$ 2,000,000.00' : '-'}</p>
-            {account ? (<p className="activity">+3% ($ 10)</p>) : ''}
+            <p className="balance-total">{account ? '$ 430.00' : '-'}</p>
+            {account ? (<p className="activity down">-4.44% ($20)</p>) : ''}
             {account &&(
               <>
                 <div className="chart">

@@ -116,7 +116,7 @@ const Hero = ({ props }) => {
                     <p>Balance</p>
                   </div>
                   <div className="value">
-                    {balance ? <p>{balance} BIT</p> : <p>{`-`}</p>}
+                    {account ? <p>860 BIT</p> : <p>{`-`}</p>}
                   </div>
                 </div>
                 <div className="item">
@@ -131,7 +131,7 @@ const Hero = ({ props }) => {
                     <p>BIT Value</p>
                   </div>
                   <div className="value">
-                    {account ? <p>$20.87 (@ $1.23 BIT)</p> : <p>{`-`}</p>}
+                    {account ? <p>$430.00 (@ $0.50 BIT)</p> : <p>{`-`}</p>}
                   </div>
                 </div>
                 <div className="item">
