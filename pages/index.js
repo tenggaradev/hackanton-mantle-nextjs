@@ -42,7 +42,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className="app">
       <Head>
         <title>Tenggara Hackanton Mantle</title>
         <meta name="description" content="Tenggara Hackanton Mantle" />
@@ -54,6 +54,6 @@ export default function Home() {
       <Balance props={props} />
       <Transactions props={props} />
       <Footer />
-    </>
+    </div>
   );
 }
