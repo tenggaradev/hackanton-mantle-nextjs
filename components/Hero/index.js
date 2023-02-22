@@ -31,9 +31,8 @@ const Hero = ({ props }) => {
   const handleClose = () => setOpen(false);
 
   const options = [
-    { value: "Token 1", label: "Token 1" },
-    { value: "Token 2", label: "Token 2" },
-    { value: "Token 3", label: "Token 3" },
+    { value: "Bitcoin (BTC)", label: "Bitcoin (BTC)" },
+    { value: "Ethereum (ETH)", label: "Ethereum (ETH)" },
   ];
 
   const handleCopyClipboard = (param) => {
