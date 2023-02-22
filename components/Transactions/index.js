@@ -89,16 +89,16 @@ const Transactions = ({ props }) => {
                 </TabList>
               </Box>
               <TabPanel className="tab-content" value="1">
-                <TabTransactions transactions={transactions} props={props}/>
+                {account ? (<TabTransactions transactions={transactions} props={props}/>) : (<p>no data</p>)}
               </TabPanel>
               <TabPanel className="tab-content" value="2">
-                <TabTransfer transactions={transactions} />
+                {account ? (<TabTransfer transactions={transactions} props={props}/>) : (<p>no data</p>)}
               </TabPanel>
               <TabPanel className="tab-content" value="3">
-                <TabDeposit transactions={transactions} />
+                {account ? (<TabDeposit transactions={transactions} props={props}/>) : (<p>no data</p>)}
               </TabPanel>
               <TabPanel className="tab-content" value="4">
-                <TabWithdrawal transactions={transactions} />
+                {account ? (<TabWithdrawal transactions={transactions} props={props}/>) : (<p>no data</p>)}
               </TabPanel>
             </TabContext>
           </Box>
