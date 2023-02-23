@@ -274,7 +274,7 @@ Project Link: [https://github.com/tenggaradev/hackanton-mantle-nextjs](https://g
 [issues-shield]: https://img.shields.io/github/issues/yusakman/moirai-aggregator.svg?style=for-the-badge
 [issues-url]: https://github.com/tenggaradev/hackanton-mantle-nextjs/issues
 [license-shield]: https://img.shields.io/github/license/yusakman/moirai-aggregator.svg?style=for-the-badge
-[license-url]: https://github.com/tenggaradev/hackanton-mantle-nextjs/blob/master/LICENSE.txt
+[license-url]: https://github.com/tenggaradev/hackanton-mantle-nextjs/blob/main/License.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/company/tenggaradev/
 [product-screenshot]: assets/product/Product_Hero.jpg
